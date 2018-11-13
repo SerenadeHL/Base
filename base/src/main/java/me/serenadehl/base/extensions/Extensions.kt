@@ -10,6 +10,7 @@ import android.widget.Toast
 import me.serenadehl.base.BuildConfig
 import me.serenadehl.base.utils.sharedpre.SPUtil
 import android.support.v4.app.Fragment
+import me.serenadehl.base.BaseApplication
 
 /**
  *
@@ -61,7 +62,7 @@ inline fun Activity.setNavigationBarColor(color: Int) {
  * log
  */
 inline fun Any.log() {
-    if (BuildConfig.DEBUG) Log.e(TAG, toString())
+    if (BaseApplication.DEBUG) Log.e(TAG, toString())
 }
 
 /**

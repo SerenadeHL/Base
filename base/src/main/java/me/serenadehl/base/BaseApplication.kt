@@ -9,9 +9,16 @@ import me.serenadehl.base.utils.app.ActivityLifecycleCallback
  * 创建时间：2018-02-21 16:55:25
  */
 
-open class App : Application() {
+abstract class BaseApplication : Application() {
+    companion object {
+        var DEBUG: Boolean = false
+    }
+
     override fun onCreate() {
         super.onCreate()
         registerActivityLifecycleCallbacks(ActivityLifecycleCallback())
+        DEBUG = isDebug()
     }
+
+    abstract fun isDebug(): Boolean
 }
