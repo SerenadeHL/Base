@@ -16,6 +16,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    //解决依赖库BuildConfig.DEBUG总是false
+    publishNonDefault true
 }
 
 dependencies {
