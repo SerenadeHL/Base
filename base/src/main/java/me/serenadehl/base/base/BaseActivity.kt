@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AppCompatActivity
 import android.view.*
+import me.serenadehl.base.utils.app.AppManager
 
 abstract class BaseActivity : AppCompatActivity() {
     lateinit var mRootView: View
@@ -16,7 +17,15 @@ abstract class BaseActivity : AppCompatActivity() {
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         mRootView = LayoutInflater.from(this).inflate(layout(), null)
         setContentView(mRootView)
+        //记录当前Activity
+        AppManager.instance.addActivity(this)
         onActivityCreated(savedInstanceState)
+    }
+
+    override fun onDestroy() {
+        //移除当前Activity
+        AppManager.instance.removeActivity(this)
+        super.onDestroy()
     }
 
     /**

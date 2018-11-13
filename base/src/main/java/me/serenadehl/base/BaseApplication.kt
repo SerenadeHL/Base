@@ -1,7 +1,6 @@
 package me.serenadehl.base
 
 import android.app.Application
-import me.serenadehl.base.utils.app.ActivityLifecycleCallback
 
 /**
  * 作者：Serenade
@@ -16,7 +15,6 @@ abstract class BaseApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        registerActivityLifecycleCallbacks(ActivityLifecycleCallback())
         DEBUG = isDebug()
     }
 
