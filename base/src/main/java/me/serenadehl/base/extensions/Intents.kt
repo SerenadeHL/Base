@@ -7,8 +7,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
 import java.io.Serializable
-import android.app.Fragment as AppFragment
-import android.support.v4.app.Fragment as SupportFragment
+import android.support.v4.app.Fragment
 
 fun fillIntentArguments(intent: Intent, params: Array<out Pair<String, Any?>>) {
     params.forEach {
@@ -52,13 +51,7 @@ inline fun <reified T : Activity> Context.startActivity(vararg params: Pair<Stri
     })
 }
 
-inline fun <reified T : Activity> SupportFragment.startActivity(vararg params: Pair<String, Any?>) {
-    startActivity(Intent(activity, T::class.java).apply {
-        if (params.isNotEmpty()) fillIntentArguments(this, params)
-    })
-}
-
-inline fun <reified T : Activity> AppFragment.startActivity(vararg params: Pair<String, Any?>) {
+inline fun <reified T : Activity> Fragment.startActivity(vararg params: Pair<String, Any?>) {
     startActivity(Intent(activity, T::class.java).apply {
         if (params.isNotEmpty()) fillIntentArguments(this, params)
     })
@@ -70,11 +63,7 @@ inline fun <reified T : Service> Context.startService(vararg params: Pair<String
     })
 }
 
-inline fun <reified T : Service> SupportFragment.startService(vararg params: Pair<String, Any?>) {
-    activity?.startService<T>(*params)
-}
-
-inline fun <reified T : Service> AppFragment.startService(vararg params: Pair<String, Any?>) {
+inline fun <reified T : Service> Fragment.startService(vararg params: Pair<String, Any?>) {
     activity?.startService<T>(*params)
 }
 

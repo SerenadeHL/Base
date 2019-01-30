@@ -8,8 +8,8 @@ import me.serenadehl.base.base.BaseFragment
  * 邮箱：SerenadeHL@163.com
  * 创建时间：2018-11-05 15:52:29
  */
-abstract class MVPBaseFragment<P : IBasePresenter> : BaseFragment(), IBaseView {
-    val mPresenter: P
+abstract class MVPBaseFragment : BaseFragment(), IBaseView {
+    val mPresenter: IBasePresenter
 
     init {
         mPresenter = this.createPresenter()
@@ -25,5 +25,5 @@ abstract class MVPBaseFragment<P : IBasePresenter> : BaseFragment(), IBaseView {
         super.onDestroy()
     }
 
-    abstract fun createPresenter(): P
+    abstract fun createPresenter(): IBasePresenter
 }

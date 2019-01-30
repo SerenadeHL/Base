@@ -1,6 +1,7 @@
 package me.serenadehl.base
 
 import android.app.Application
+import android.content.pm.ApplicationInfo
 
 /**
  * 作者：Serenade
@@ -15,8 +16,6 @@ abstract class BaseApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        DEBUG = isDebug()
+        DEBUG = applicationInfo != null && applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0
     }
-
-    abstract fun isDebug(): Boolean
 }

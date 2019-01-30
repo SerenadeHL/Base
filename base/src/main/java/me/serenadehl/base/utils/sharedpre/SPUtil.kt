@@ -1,7 +1,6 @@
 package me.serenadehl.base.utils.sharedpre
 
 import android.content.Context.MODE_PRIVATE
-import android.content.SharedPreferences
 import com.google.gson.Gson
 import me.serenadehl.base.utils.app.AppManager
 
@@ -11,8 +10,14 @@ import me.serenadehl.base.utils.app.AppManager
  * 创建时间：2018-02-15 00:50:35
  */
 object SPUtil {
-    private const val SP_NAME = "Serenade"
-    private val mSharedPreferences: SharedPreferences by lazy {
+    private val SP_NAME by lazy {
+        AppManager.instance
+                .currentActivity
+                .applicationContext
+                .applicationInfo
+                .packageName
+    }
+    private val mSharedPreferences by lazy {
         AppManager.instance
                 .currentActivity
                 .applicationContext
@@ -44,7 +49,7 @@ object SPUtil {
                 .apply()
     }
 
-    fun getInt(key: String, defValue: Int = -1) = mSharedPreferences.getInt(key, defValue)
+    fun getInt(key: String, defValue: Int = 0) = mSharedPreferences.getInt(key, defValue)
 
     fun putFloat(key: String, value: Float) {
         mSharedPreferences
@@ -53,7 +58,7 @@ object SPUtil {
                 .apply()
     }
 
-    fun getFloat(key: String, defValue: Float = -1F) = mSharedPreferences.getFloat(key, defValue)
+    fun getFloat(key: String, defValue: Float = 0F) = mSharedPreferences.getFloat(key, defValue)
 
     fun putLong(key: String, value: Long) {
         mSharedPreferences
@@ -62,9 +67,9 @@ object SPUtil {
                 .apply()
     }
 
-    fun getLong(key: String, defValue: Long = -1L) = mSharedPreferences.getLong(key, defValue)
+    fun getLong(key: String, defValue: Long = 0L) = mSharedPreferences.getLong(key, defValue)
 
-    fun putArrayList(key: String, value: ArrayList<out Any>) = putString(key, Gson().toJson(value))
+    fun putArrayList(key: String, value: List<out Any>) = putString(key, Gson().toJson(value))
 
-    fun <T> getArrayList(key: String) = Gson().fromJson(mSharedPreferences.getString(key, "[]"), ArrayList::class.java) as ArrayList<*>
+    fun <T> getArrayList(key: String) = Gson().fromJson(mSharedPreferences.getString(key, "[]"), ArrayList::class.java) as ArrayList<T>
 }
