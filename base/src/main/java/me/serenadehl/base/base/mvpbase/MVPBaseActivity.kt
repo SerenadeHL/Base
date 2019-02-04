@@ -3,8 +3,8 @@ package me.serenadehl.base.base.mvpbase
 import android.os.Bundle
 import me.serenadehl.base.base.BaseActivity
 
-abstract class MVPBaseActivity : BaseActivity(), IBaseView {
-    val mPresenter: IBasePresenter
+abstract class MVPBaseActivity<P : IBasePresenter> : BaseActivity(), IBaseView {
+    val mPresenter: P
 
     init {
         mPresenter = this.createPresenter()
@@ -20,5 +20,5 @@ abstract class MVPBaseActivity : BaseActivity(), IBaseView {
         super.onDestroy()
     }
 
-    abstract fun createPresenter(): IBasePresenter
+    abstract fun createPresenter(): P
 }
