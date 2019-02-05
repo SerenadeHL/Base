@@ -83,6 +83,6 @@ class GlideRoundTransform(dpValue: Float = 4.0F) : BitmapTransformation() {
     }
 
     override fun updateDiskCacheKey(messageDigest: MessageDigest) {
-        messageDigest.update((javaClass.name + Math.round(mRadius)).toByte())
+        messageDigest.update((javaClass.name + Math.round(mRadius)).toByteArray())
     }
 }
