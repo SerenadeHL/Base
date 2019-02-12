@@ -3,6 +3,8 @@ package me.serenadehl.base.extensions
 import android.app.Activity
 import android.content.Context
 import android.os.Build
+import android.support.annotation.IntegerRes
+import android.support.annotation.StringRes
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
@@ -25,6 +27,10 @@ import me.serenadehl.base.BaseApplication
 inline fun Context.toast(msg: String) = Toast.makeText(applicationContext, msg, Toast.LENGTH_SHORT).show()
 
 inline fun Fragment.toast(msg: String) = Toast.makeText(activity?.applicationContext, msg, Toast.LENGTH_SHORT).show()
+
+inline fun Context.toast(@StringRes msgId: Int) = Toast.makeText(applicationContext, msgId, Toast.LENGTH_SHORT).show()
+
+inline fun Fragment.toast(@StringRes msgId: Int) = Toast.makeText(activity?.applicationContext, msgId, Toast.LENGTH_SHORT).show()
 
 /**
  * 隐藏输入法
