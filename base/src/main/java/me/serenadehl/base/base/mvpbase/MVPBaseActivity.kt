@@ -4,7 +4,7 @@ import android.os.Bundle
 import me.serenadehl.base.base.BaseActivity
 
 abstract class MVPBaseActivity<P : IBasePresenter> : BaseActivity(), IBaseView {
-    val mPresenter: P
+    protected val mPresenter: P
 
     init {
         mPresenter = this.createPresenter()

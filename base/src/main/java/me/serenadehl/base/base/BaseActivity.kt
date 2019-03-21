@@ -6,16 +6,22 @@ import android.os.Bundle
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AppCompatActivity
 import android.view.*
+import me.serenadehl.base.extensions.getStatusBarHeight
+import me.serenadehl.base.extensions.gone
+import me.serenadehl.base.extensions.visible
 import me.serenadehl.base.utils.app.AppManager
 
 abstract class BaseActivity : AppCompatActivity() {
-    lateinit var mRootView: View
+    protected lateinit var mRootView: ViewGroup
+    protected lateinit var mStatusBarView: View
+    private lateinit var mContentView: ViewGroup
+    private lateinit var mContentParent: ViewGroup
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //取消ActionBar
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
-        mRootView = LayoutInflater.from(this).inflate(layout(), null)
+        mRootView = LayoutInflater.from(this).inflate(layout(), null) as ViewGroup
         setContentView(mRootView)
         //记录当前Activity
         AppManager.instance.addActivity(this)
@@ -36,27 +42,12 @@ abstract class BaseActivity : AppCompatActivity() {
 
     abstract fun onActivityCreated(savedInstanceState: Bundle?)
 
-
-    /**
-     * 获得StatusBar的高度
-     *
-     * @return StatusBar的高度
-     */
-    fun getStatusBarHeight(): Int {
-        var result = 0
-        val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
-        if (resourceId > 0) {
-            result = resources.getDimensionPixelSize(resourceId)
-        }
-        return result
-    }
-
     /**
      * 设置StatusBar透明
      *
      * @param darkFont 是否使用深色状态栏字体
      */
-    fun setTranslucentStatus(darkFont: Boolean) {
+    protected fun setStatusBarTranslucent(darkFont: Boolean) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             //5.0 全透明实现
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
@@ -72,35 +63,72 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     }
 
-
     /**
      * 设置状态栏颜色
      *
      * @param color 颜色
      * @param darkFont 是否使用深色状态栏字体
      */
-    fun setStatusBarColor(color: Int, darkFont: Boolean = false) {
-        setTranslucentStatus(darkFont)
-        val contentLayout = findViewById<View>(android.R.id.content) as ViewGroup
-        setupStatusBarView(contentLayout, color)
-        var contentView = contentLayout.getChildAt(1)
-        //如果是DrawerLayout,让内部第一个布局设置padding
-        if (contentView is DrawerLayout)
-            contentView = contentView.getChildAt(0)
-        val params = contentView.layoutParams as ViewGroup.MarginLayoutParams
-        params.setMargins(0, getStatusBarHeight(), 0, 0)
+    protected fun setStatusBarColor(color: Int, darkFont: Boolean = false) {
+        setStatusBarTranslucent(darkFont)
+        mStatusBarView.setBackgroundColor(color)
     }
 
     /**
-     * 创建view替换StatusBar
+     * 替换状态栏
      *
-     * @param contentLayout
-     * @param color
+     * @param color 颜色
+     * @param darkFont 是否使用深色状态栏字体
      */
-    private fun setupStatusBarView(contentLayout: ViewGroup, color: Int) {
-        val statusBarView = View(this)
+    protected fun setupStatusBar(color: Int, darkFont: Boolean = false) {
+        findContentView()
+        createStatusBarView(mContentParent)
+        setStatusBarColor(color, darkFont)
+        showStatusBar()
+    }
+
+    /**
+     * 找到父布局
+     */
+    private fun findContentView() {
+        if (::mContentParent.isInitialized) return
+
+        mContentParent = findViewById<View>(android.R.id.content) as ViewGroup
+        //如果是DrawerLayout,让内部第一个布局设置padding
+        mContentView = if (mRootView is DrawerLayout)
+            mContentView.getChildAt(0) as ViewGroup
+        else
+            mRootView
+    }
+
+    /**
+     * 显示状态栏
+     */
+    protected fun showStatusBar() {
+        if (::mStatusBarView.isInitialized) {
+            mStatusBarView.visible()
+            val params = mContentView.layoutParams as ViewGroup.MarginLayoutParams
+            params.setMargins(0, getStatusBarHeight(), 0, 0)
+        }
+    }
+
+    /**
+     * 隐藏状态栏
+     */
+    protected fun hideStatusBar() {
+        if (::mStatusBarView.isInitialized) {
+            mStatusBarView.gone()
+            val params = mContentView.layoutParams as ViewGroup.MarginLayoutParams
+            params.setMargins(0, 0, 0, 0)
+        }
+    }
+
+    /**
+     * 创建状态栏View
+     */
+    private fun createStatusBarView(contentLayout: ViewGroup) {
+        mStatusBarView = View(this)
         val lp = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getStatusBarHeight())
-        contentLayout.addView(statusBarView, 0, lp)
-        statusBarView.setBackgroundColor(color)
+        contentLayout.addView(mStatusBarView, 0, lp)
     }
 }

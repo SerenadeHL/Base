@@ -9,7 +9,7 @@ import me.serenadehl.base.base.BaseFragment
  * 创建时间：2018-11-05 15:52:29
  */
 abstract class MVPBaseFragment<P : IBasePresenter> : BaseFragment(), IBaseView {
-    val mPresenter: P
+    protected val mPresenter: P
 
     init {
         mPresenter = this.createPresenter()

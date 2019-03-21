@@ -1,12 +1,10 @@
 package me.serenadehl.base.base.mvpbase
 
-import io.reactivex.disposables.CompositeDisposable
 import java.lang.ref.WeakReference
 
 abstract class MVPBasePresenter<V : IBaseView, M : IBaseModel> : IBasePresenter {
-    val mCompositeDisposable by lazy { CompositeDisposable() }
-    lateinit var mView: WeakReference<V>
-    var mModel: M
+    protected  lateinit var mView: WeakReference<V>
+    protected var mModel: M
 
     init {
         mModel = this.createModel()
@@ -19,7 +17,6 @@ abstract class MVPBasePresenter<V : IBaseView, M : IBaseModel> : IBasePresenter 
 
     override fun detach() {
         mView.clear()
-        mCompositeDisposable.dispose()
     }
 
     abstract fun createModel(): M

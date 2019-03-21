@@ -12,7 +12,7 @@ import android.view.ViewGroup
  * 创建时间：2018-02-27 09:05:22
  */
 abstract class BaseFragment : Fragment() {
-    lateinit var mRootView: View
+    protected lateinit var mRootView: View
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mRootView = inflater.inflate(layout(), null)

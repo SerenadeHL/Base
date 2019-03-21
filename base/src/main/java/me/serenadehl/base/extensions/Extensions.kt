@@ -33,6 +33,18 @@ inline fun Context.toast(@StringRes msgId: Int) = Toast.makeText(applicationCont
 inline fun Fragment.toast(@StringRes msgId: Int) = Toast.makeText(activity?.applicationContext, msgId, Toast.LENGTH_SHORT).show()
 
 /**
+ * 获取状态栏高度
+ */
+inline fun Context.getStatusBarHeight(): Int {
+    var result = 0
+    val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
+    if (resourceId > 0) {
+        result = resources.getDimensionPixelSize(resourceId)
+    }
+    return result
+}
+
+/**
  * 隐藏输入法
  *
  * @param view
@@ -64,14 +76,4 @@ inline fun Activity.setNavigationBarColor(color: Int) {
     }
 }
 
-/**
- * log
- */
-inline fun Any.log() {
-    if (BaseApplication.DEBUG) Log.e(TAG, toString())
-}
-
-/**
- * 保存到SP
- */
-inline fun <T> T.saveToSP(key: String) = apply { SPUtil.putString(key, toString()) }
+inline fun Fragment.setNavigationBarColor(color: Int) = activity?.setNavigationBarColor(color)

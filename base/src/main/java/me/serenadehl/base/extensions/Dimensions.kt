@@ -34,7 +34,6 @@ inline fun View.dimen(@DimenRes resource: Int): Int = context.dimen(resource)
 
 //the same for Fragments
 inline fun Fragment.dp(value: Int): Int? = activity?.dp(value)
-
 inline fun Fragment.dp(value: Float): Int? = activity?.dp(value)
 inline fun Fragment.sp(value: Int): Int? = activity?.sp(value)
 inline fun Fragment.sp(value: Float): Int? = activity?.sp(value)
