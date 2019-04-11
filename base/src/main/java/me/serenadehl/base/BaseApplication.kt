@@ -10,10 +10,11 @@ import android.content.pm.ApplicationInfo
  */
 
 abstract class BaseApplication : Application() {
-    protected var debug: Boolean = false
-
+    companion object {
+        var DEBUG: Boolean = false
+    }
     override fun onCreate() {
         super.onCreate()
-        debug = applicationInfo != null && applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0
+        DEBUG = applicationInfo != null && applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE != 0
     }
 }
