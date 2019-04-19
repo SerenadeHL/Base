@@ -16,3 +16,7 @@ const val TAG = "=========="
 inline fun Any.log() {
     if (BaseApplication.DEBUG) Log.e(TAG, toString())
 }
+
+inline fun Any.log(tag: String) {
+    if (BaseApplication.DEBUG) Log.e(tag, toString())
+}

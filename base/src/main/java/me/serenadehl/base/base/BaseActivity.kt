@@ -3,6 +3,8 @@ package me.serenadehl.base.base
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.support.annotation.DrawableRes
+import android.support.annotation.IntegerRes
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AppCompatActivity
 import android.view.*
@@ -75,15 +77,22 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     /**
-     * 替换状态栏
+     * 设置状态栏背景
      *
-     * @param color 颜色
+     * @param resId 图片id
      * @param darkFont 是否使用深色状态栏字体
      */
-    protected fun setupStatusBar(color: Int, darkFont: Boolean = false) {
+    protected fun setStatusBarBackgroundResource(@DrawableRes resId: Int, darkFont: Boolean = false) {
+        setStatusBarTranslucent(darkFont)
+        mStatusBarView.setBackgroundResource(resId)
+    }
+
+    /**
+     * 替换状态栏
+     */
+    protected fun setupStatusBar() {
         findContentView()
         createStatusBarView(mContentParent)
-        setStatusBarColor(color, darkFont)
         showStatusBar()
     }
 
