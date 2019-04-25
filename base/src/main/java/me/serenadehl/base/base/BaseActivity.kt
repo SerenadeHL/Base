@@ -4,7 +4,6 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.support.annotation.DrawableRes
-import android.support.annotation.IntegerRes
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.AppCompatActivity
 import android.view.*

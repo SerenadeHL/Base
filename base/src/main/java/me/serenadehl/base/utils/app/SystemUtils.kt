@@ -27,7 +27,7 @@ object SystemUtils {
         val currentActivity = AppManager.instance.currentActivity
         val wm = currentActivity.getSystemService(WINDOW_SERVICE) as WindowManager
         val dm = DisplayMetrics()
-        wm.defaultDisplay.getMetrics(dm)
+        wm.defaultDisplay.getRealMetrics(dm)
         return dm.widthPixels
     }
 
@@ -38,7 +38,7 @@ object SystemUtils {
         val currentActivity = AppManager.instance.currentActivity
         val wm = currentActivity.getSystemService(WINDOW_SERVICE) as WindowManager
         val dm = DisplayMetrics()
-        wm.defaultDisplay.getMetrics(dm)
+        wm.defaultDisplay.getRealMetrics(dm)
         return dm.heightPixels
     }
 
