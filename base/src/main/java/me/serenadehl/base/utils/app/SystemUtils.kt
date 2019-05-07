@@ -1,9 +1,12 @@
 package com.dong.dapp.utils
 
 import android.annotation.SuppressLint
+import android.app.ActivityManager
+import android.content.Context
 import android.content.Context.TELEPHONY_SERVICE
 import android.content.Context.WINDOW_SERVICE
 import android.os.Build
+import android.support.v4.content.ContextCompat.getSystemService
 import android.telephony.TelephonyManager
 import android.util.DisplayMetrics
 import android.view.WindowManager
@@ -105,11 +108,11 @@ object SystemUtils {
     /**
      * 获取Mac地址
      */
-    fun getMacAddress():String{
+    fun getMacAddress(): String {
         try {
             val networkInterfaces = Collections.list(getNetworkInterfaces())
             for (networkInterface in networkInterfaces) {
-                if (!networkInterface.name.equals("wlan0",true)) continue
+                if (!networkInterface.name.equals("wlan0", true)) continue
 
                 val macBytes = networkInterface.hardwareAddress ?: return ""
 
@@ -127,5 +130,26 @@ object SystemUtils {
             e.printStackTrace()
         }
         return "02:00:00:00:00:00"
+    }
+
+    /**
+     * 获取当前进程名
+     */
+    fun getCurrentProcessName(context: Context): String {
+        val pid = android.os.Process.myPid()
+        val manager = context.applicationContext.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        for (process in manager.runningAppProcesses) {
+            if (process.pid == pid) {
+                return process.processName
+            }
+        }
+        return ""
+    }
+
+    /**
+     * 是否是主进程
+     */
+    private fun isMainProcess(context: Context): Boolean {
+        return context.applicationContext.packageName == getCurrentProcessName(context)
     }
 }
