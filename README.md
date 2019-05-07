@@ -1,3 +1,4 @@
+# 添加依赖
 ```java
 allprojects {
 	repositories {
@@ -10,3 +11,12 @@ dependencies {
 }
 ```
 
+# 自定义Gson
+```java
+class DAppApplication : BaseApplication() {
+     override fun onCreate() {
+        super.onCreate()
+        GsonExtensionUtils.setGson(yourGson)
+     }
+}
+```
