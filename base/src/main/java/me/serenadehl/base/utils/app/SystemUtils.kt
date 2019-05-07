@@ -149,7 +149,7 @@ object SystemUtils {
     /**
      * 是否是主进程
      */
-    private fun isMainProcess(context: Context): Boolean {
+    fun isMainProcess(context: Context): Boolean {
         return context.applicationContext.packageName == getCurrentProcessName(context)
     }
 }
