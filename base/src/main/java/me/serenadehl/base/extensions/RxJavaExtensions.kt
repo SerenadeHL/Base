@@ -2,6 +2,7 @@ package me.serenadehl.base.extensions
 
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 /**
@@ -17,4 +18,11 @@ inline fun <reified T> Observable<T?>.async(): Observable<T?> {
             .unsubscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .onTerminateDetach()
+}
+
+/**
+ * RxJava2添加绑定
+ */
+inline fun <reified T> Observable<T?>.addDisposable(compositeDisposable: CompositeDisposable): Observable<T?> {
+    return doOnSubscribe { compositeDisposable.add(it) }
 }
