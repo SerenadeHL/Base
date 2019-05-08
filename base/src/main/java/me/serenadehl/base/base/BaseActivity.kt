@@ -25,13 +25,13 @@ abstract class BaseActivity : AppCompatActivity() {
         mRootView = LayoutInflater.from(this).inflate(layout(), null) as ViewGroup
         setContentView(mRootView)
         //记录当前Activity
-        AppManager.instance.addActivity(this)
+        AppManager.addActivity(this)
         onActivityCreated(savedInstanceState)
     }
 
     override fun onDestroy() {
         //移除当前Activity
-        AppManager.instance.removeActivity(this)
+        AppManager.removeActivity(this)
         super.onDestroy()
     }
 

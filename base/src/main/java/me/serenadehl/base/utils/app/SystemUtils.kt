@@ -27,7 +27,7 @@ object SystemUtils {
      * 获取设备屏幕宽度
      */
     fun getScreenWidth(): Int {
-        val currentActivity = AppManager.instance.currentActivity
+        val currentActivity = AppManager.currentActivity
         val wm = currentActivity.getSystemService(WINDOW_SERVICE) as WindowManager
         val dm = DisplayMetrics()
         wm.defaultDisplay.getRealMetrics(dm)
@@ -38,7 +38,7 @@ object SystemUtils {
      * 获取设备屏幕高度
      */
     fun getScreenHeight(): Int {
-        val currentActivity = AppManager.instance.currentActivity
+        val currentActivity = AppManager.currentActivity
         val wm = currentActivity.getSystemService(WINDOW_SERVICE) as WindowManager
         val dm = DisplayMetrics()
         wm.defaultDisplay.getRealMetrics(dm)
@@ -70,7 +70,7 @@ object SystemUtils {
      * 获取App版本名
      */
     fun getAppVersionName(): String {
-        val currentActivity = AppManager.instance.currentActivity
+        val currentActivity = AppManager.currentActivity
         // 获取PackageManager的实例
         val packageManager = currentActivity.packageManager
         // getPackageName()是你当前类的包名，0代表是获取版本信息
@@ -82,7 +82,7 @@ object SystemUtils {
      * 获取App版本号
      */
     fun getAppVersionCode(): String {
-        val currentActivity = AppManager.instance.currentActivity
+        val currentActivity = AppManager.currentActivity
         // 获取PackageManager的实例
         val packageManager = currentActivity.packageManager
         // getPackageName()是你当前类的包名，0代表是获取版本信息
@@ -96,7 +96,7 @@ object SystemUtils {
      */
     @SuppressLint("MissingPermission", "HardwareIds")
     fun getIMEI(): String {
-        val currentActivity = AppManager.instance.currentActivity
+        val currentActivity = AppManager.currentActivity
         val telephonyManager = currentActivity.getSystemService(TELEPHONY_SERVICE) as TelephonyManager
         return try {
             telephonyManager.deviceId ?: ""

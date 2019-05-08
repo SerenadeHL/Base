@@ -10,17 +10,8 @@ import java.util.*
  * 创建时间：2018-02-15 00:55:56
  */
 
-class AppManager private constructor() {
-
-    private object AppManagerHolder {
-        val INSTANCE = AppManager()
-    }
-
-    companion object {
-        private val activities: Stack<Activity> by lazy { Stack<Activity>() }
-
-        val instance: AppManager get() = AppManagerHolder.INSTANCE
-    }
+object AppManager{
+    private val activities: Stack<Activity> by lazy { Stack<Activity>() }
 
     /**
      * 获取当前Activity

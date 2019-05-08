@@ -11,15 +11,13 @@ import me.serenadehl.base.utils.app.AppManager
  */
 object SPUtil {
     private val SP_NAME by lazy {
-        AppManager.instance
-                .currentActivity
+        AppManager.currentActivity
                 .applicationContext
                 .applicationInfo
                 .packageName
     }
     private val mSharedPreferences by lazy {
-        AppManager.instance
-                .currentActivity
+        AppManager.currentActivity
                 .applicationContext
                 .getSharedPreferences(SP_NAME, MODE_PRIVATE)
     }

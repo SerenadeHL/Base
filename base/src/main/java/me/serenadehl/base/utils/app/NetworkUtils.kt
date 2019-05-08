@@ -28,7 +28,7 @@ object NetworkUtils {
      */
     @SuppressLint("MissingPermission")
     fun getNetworkType(): Int {
-        val context = AppManager.instance.currentActivity.applicationContext
+        val context = AppManager.currentActivity.applicationContext
         val connManager = context.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager? ?: return NETWORK_NONE
         try {
             // 获取网络类型，如果为空，返回无网络
@@ -85,7 +85,7 @@ object NetworkUtils {
      */
     @SuppressLint("MissingPermission")
     fun isNetworkConnected(): Boolean {
-        val context = AppManager.instance.currentActivity.applicationContext
+        val context = AppManager.currentActivity.applicationContext
         val connectivity = context.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
         try {
             val info = connectivity.activeNetworkInfo
@@ -107,7 +107,7 @@ object NetworkUtils {
      */
     @SuppressLint("MissingPermission")
     fun isWifiConnected(): Boolean {
-        val context = AppManager.instance.currentActivity.applicationContext
+        val context = AppManager.currentActivity.applicationContext
         val connectivityManager = context.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
         try {
             val networkInfo = connectivityManager.activeNetworkInfo
