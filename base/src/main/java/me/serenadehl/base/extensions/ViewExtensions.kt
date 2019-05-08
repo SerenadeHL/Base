@@ -20,3 +20,19 @@ inline fun View.setSize(width: Int = layoutParams.width, height: Int = layoutPar
         this.height = height
     }
 }
+
+/**
+ * 测量View并获取View宽度
+ */
+inline fun View.measureAndGetMeasuredWidth(): Int{
+    measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
+    return measuredWidth
+}
+
+/**
+ * 测量View并获取View高度
+ */
+inline fun View.measureAndGetMeasuredHeight(): Int{
+    measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
+    return measuredHeight
+}
