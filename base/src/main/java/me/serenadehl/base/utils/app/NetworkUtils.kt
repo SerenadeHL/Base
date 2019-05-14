@@ -1,4 +1,4 @@
-package com.dong.dapp.utils
+package me.serenadehl.base.utils.app
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -6,7 +6,6 @@ import android.content.Context.CONNECTIVITY_SERVICE
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.telephony.TelephonyManager
-import me.serenadehl.base.utils.app.AppManager
 
 
 /**
@@ -27,9 +26,8 @@ object NetworkUtils {
      * 需要ACCESS_NETWORK_STATE权限
      */
     @SuppressLint("MissingPermission")
-    fun getNetworkType(): Int {
-        val context = AppManager.currentActivity.applicationContext
-        val connManager = context.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager? ?: return NETWORK_NONE
+    fun getNetworkType(context: Context): Int {
+        val connManager = context.applicationContext.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager? ?: return NETWORK_NONE
         try {
             // 获取网络类型，如果为空，返回无网络
             val activeNetInfo = connManager.activeNetworkInfo
@@ -47,7 +45,7 @@ object NetworkUtils {
                 }
             }
             // 若不是WIFI，则去判断是2G、3G、4G网
-            val telephonyManager = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+            val telephonyManager = context.applicationContext.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
             when (telephonyManager.networkType) {
                 /*
              GPRS : 2G(2.5) General Packet Radia Service 114kbps
@@ -84,9 +82,8 @@ object NetworkUtils {
      * 需要ACCESS_NETWORK_STATE权限
      */
     @SuppressLint("MissingPermission")
-    fun isNetworkConnected(): Boolean {
-        val context = AppManager.currentActivity.applicationContext
-        val connectivity = context.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+    fun isNetworkConnected(context: Context): Boolean {
+        val connectivity = context.applicationContext.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
         try {
             val info = connectivity.activeNetworkInfo
             if (info != null && info.isConnected) {
@@ -106,9 +103,8 @@ object NetworkUtils {
      * 需要ACCESS_NETWORK_STATE权限
      */
     @SuppressLint("MissingPermission")
-    fun isWifiConnected(): Boolean {
-        val context = AppManager.currentActivity.applicationContext
-        val connectivityManager = context.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+    fun isWifiConnected(context: Context): Boolean {
+        val connectivityManager = context.applicationContext.getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
         try {
             val networkInfo = connectivityManager.activeNetworkInfo
             if (networkInfo != null) {

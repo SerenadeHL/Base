@@ -1,4 +1,4 @@
-package com.dong.dapp.utils
+package me.serenadehl.base.utils.app
 
 import android.annotation.SuppressLint
 import android.app.ActivityManager
@@ -6,11 +6,9 @@ import android.content.Context
 import android.content.Context.TELEPHONY_SERVICE
 import android.content.Context.WINDOW_SERVICE
 import android.os.Build
-import android.support.v4.content.ContextCompat.getSystemService
 import android.telephony.TelephonyManager
 import android.util.DisplayMetrics
 import android.view.WindowManager
-import me.serenadehl.base.utils.app.AppManager
 import java.net.NetworkInterface.getNetworkInterfaces
 import java.util.*
 
@@ -26,9 +24,8 @@ object SystemUtils {
     /**
      * 获取设备屏幕宽度
      */
-    fun getScreenWidth(): Int {
-        val currentActivity = AppManager.currentActivity
-        val wm = currentActivity.getSystemService(WINDOW_SERVICE) as WindowManager
+    fun getScreenWidth(context: Context): Int {
+        val wm = context.applicationContext.getSystemService(WINDOW_SERVICE) as WindowManager
         val dm = DisplayMetrics()
         wm.defaultDisplay.getRealMetrics(dm)
         return dm.widthPixels
@@ -37,9 +34,8 @@ object SystemUtils {
     /**
      * 获取设备屏幕高度
      */
-    fun getScreenHeight(): Int {
-        val currentActivity = AppManager.currentActivity
-        val wm = currentActivity.getSystemService(WINDOW_SERVICE) as WindowManager
+    fun getScreenHeight(context: Context): Int {
+        val wm = context.applicationContext.getSystemService(WINDOW_SERVICE) as WindowManager
         val dm = DisplayMetrics()
         wm.defaultDisplay.getRealMetrics(dm)
         return dm.heightPixels
@@ -69,25 +65,23 @@ object SystemUtils {
     /**
      * 获取App版本名
      */
-    fun getAppVersionName(): String {
-        val currentActivity = AppManager.currentActivity
+    fun getAppVersionName(context: Context): String {
         // 获取PackageManager的实例
-        val packageManager = currentActivity.packageManager
+        val packageManager = context.applicationContext.packageManager
         // getPackageName()是你当前类的包名，0代表是获取版本信息
-        val packInfo = packageManager.getPackageInfo(currentActivity.packageName, 0)
+        val packInfo = packageManager.getPackageInfo(context.applicationContext.packageName, 0)
         return packInfo.versionName
     }
 
     /**
      * 获取App版本号
      */
-    fun getAppVersionCode(): String {
-        val currentActivity = AppManager.currentActivity
+    fun getAppVersionCode(context: Context): Int {
         // 获取PackageManager的实例
-        val packageManager = currentActivity.packageManager
+        val packageManager = context.applicationContext.packageManager
         // getPackageName()是你当前类的包名，0代表是获取版本信息
-        val packInfo = packageManager.getPackageInfo(currentActivity.packageName, 0)
-        return packInfo.versionCode.toString()
+        val packInfo = packageManager.getPackageInfo(context.applicationContext.packageName, 0)
+        return packInfo.versionCode
     }
 
     /**
@@ -95,9 +89,8 @@ object SystemUtils {
      * 需要READ_PHONE_STATE权限
      */
     @SuppressLint("MissingPermission", "HardwareIds")
-    fun getIMEI(): String {
-        val currentActivity = AppManager.currentActivity
-        val telephonyManager = currentActivity.getSystemService(TELEPHONY_SERVICE) as TelephonyManager
+    fun getIMEI(context: Context): String {
+        val telephonyManager = context.applicationContext.getSystemService(TELEPHONY_SERVICE) as TelephonyManager
         return try {
             telephonyManager.deviceId ?: ""
         } catch (e: Exception) {
