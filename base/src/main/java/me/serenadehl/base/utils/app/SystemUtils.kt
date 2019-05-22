@@ -22,9 +22,29 @@ import java.util.*
 object SystemUtils {
 
     /**
-     * 获取设备屏幕宽度
+     * 获取设备屏幕可用宽度(不包含状态栏和导航栏)
      */
     fun getScreenWidth(context: Context): Int {
+        val wm = context.applicationContext.getSystemService(WINDOW_SERVICE) as WindowManager
+        val dm = DisplayMetrics()
+        wm.defaultDisplay.getMetrics(dm)
+        return dm.widthPixels
+    }
+
+    /**
+     * 获取设备屏幕可用高度(不包含状态栏和导航栏)
+     */
+    fun getScreenHeight(context: Context): Int {
+        val wm = context.applicationContext.getSystemService(WINDOW_SERVICE) as WindowManager
+        val dm = DisplayMetrics()
+        wm.defaultDisplay.getMetrics(dm)
+        return dm.heightPixels
+    }
+
+    /**
+     * 获取设备屏幕真实宽度
+     */
+    fun getScreenRealWidth(context: Context): Int {
         val wm = context.applicationContext.getSystemService(WINDOW_SERVICE) as WindowManager
         val dm = DisplayMetrics()
         wm.defaultDisplay.getRealMetrics(dm)
@@ -32,14 +52,15 @@ object SystemUtils {
     }
 
     /**
-     * 获取设备屏幕高度
+     * 获取设备屏幕真实高度
      */
-    fun getScreenHeight(context: Context): Int {
+    fun getScreenRealHeight(context: Context): Int {
         val wm = context.applicationContext.getSystemService(WINDOW_SERVICE) as WindowManager
         val dm = DisplayMetrics()
         wm.defaultDisplay.getRealMetrics(dm)
         return dm.heightPixels
     }
+
 
     /**
      * 获取手机品牌
