@@ -11,8 +11,7 @@ import android.support.v4.app.Fragment
 
 fun fillIntentArguments(intent: Intent, params: Array<out Pair<String, Any?>>) {
     params.forEach {
-        val value = it.second
-        when (value) {
+        when (val value = it.second) {
             null -> intent.putExtra(it.first, null as Serializable?)
             is Int -> intent.putExtra(it.first, value)
             is Long -> intent.putExtra(it.first, value)

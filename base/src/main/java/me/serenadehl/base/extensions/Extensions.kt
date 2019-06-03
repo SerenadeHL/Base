@@ -1,20 +1,12 @@
 package me.serenadehl.base.extensions
 
 import android.app.Activity
-import android.content.ClipData
-import android.content.ClipboardManager
 import android.content.Context
 import android.os.Build
-import android.support.annotation.IntegerRes
 import android.support.annotation.StringRes
-import android.util.Log
-import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
-import me.serenadehl.base.BuildConfig
-import me.serenadehl.base.utils.sharedpre.SPUtil
 import android.support.v4.app.Fragment
-import me.serenadehl.base.BaseApplication
+import me.serenadehl.base.utils.app.SystemUtils
 
 /**
  *
@@ -37,14 +29,12 @@ inline fun Fragment.toast(@StringRes msgId: Int) = Toast.makeText(activity?.appl
 /**
  * 获取状态栏高度
  */
-inline fun Context.getStatusBarHeight(): Int {
-    var result = 0
-    val resourceId = resources.getIdentifier("status_bar_height", "dimen", "android")
-    if (resourceId > 0) {
-        result = resources.getDimensionPixelSize(resourceId)
-    }
-    return result
-}
+inline fun Context.getStatusBarHeight() = SystemUtils.getStatusBarHeight(this)
+
+/**
+ * 获取虚拟按键高度
+ */
+inline fun Context.getNavigationHeight() = SystemUtils.getNavigationHeight(this)
 
 /**
  * 设置虚拟按键颜色

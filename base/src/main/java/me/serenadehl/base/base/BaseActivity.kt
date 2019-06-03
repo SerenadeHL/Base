@@ -1,5 +1,6 @@
 package me.serenadehl.base.base
 
+import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -11,12 +12,22 @@ import me.serenadehl.base.extensions.getStatusBarHeight
 import me.serenadehl.base.extensions.gone
 import me.serenadehl.base.extensions.visible
 import me.serenadehl.base.utils.app.AppManager
+import me.serenadehl.base.utils.app.SystemUtils.getStatusBarHeight
+import me.serenadehl.base.utils.locale.LocaleUtils
 
 abstract class BaseActivity : AppCompatActivity() {
     protected lateinit var mRootView: ViewGroup
     protected lateinit var mStatusBarView: View
     private lateinit var mContentView: ViewGroup
     private lateinit var mContentParent: ViewGroup
+
+    override fun attachBaseContext(newBase: Context?) {
+        if (newBase != null) {
+            super.attachBaseContext(LocaleUtils.getModifiedContext(newBase))
+        } else {
+            super.attachBaseContext(newBase)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
