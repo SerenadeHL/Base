@@ -23,10 +23,7 @@ object LocaleUtils {
 
     private val mDefaultLocale = Locale.ENGLISH
 
-    private val mSupportList = arrayOf(
-            Locale.ENGLISH,
-            Locale.SIMPLIFIED_CHINESE
-    )
+    private val mSupportList = arrayOf("EN", "CN")
 
     /**
      * 获取系统设置Locale
@@ -45,7 +42,7 @@ object LocaleUtils {
     fun getPreferLocale(context: Context): Locale {
         return when (getLanguage(context)) {
             AUTO -> with(getSystemLocale()) {
-                return if (this@with in mSupportList) this@with else mDefaultLocale
+                return if (this@with.country in mSupportList) this@with else mDefaultLocale
             }
             CN -> Locale.SIMPLIFIED_CHINESE
             EN -> Locale.ENGLISH
