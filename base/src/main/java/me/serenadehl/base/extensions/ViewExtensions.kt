@@ -1,5 +1,7 @@
 package me.serenadehl.base.extensions
 
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.view.View
 
 /**
@@ -24,7 +26,7 @@ inline fun View.setSize(width: Int = layoutParams.width, height: Int = layoutPar
 /**
  * 测量View并获取View宽度
  */
-inline fun View.measureAndGetMeasuredWidth(): Int{
+inline fun View.measureAndGetMeasuredWidth(): Int {
     measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
     return measuredWidth
 }
@@ -32,7 +34,19 @@ inline fun View.measureAndGetMeasuredWidth(): Int{
 /**
  * 测量View并获取View高度
  */
-inline fun View.measureAndGetMeasuredHeight(): Int{
+inline fun View.measureAndGetMeasuredHeight(): Int {
     measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED)
     return measuredHeight
+}
+
+/**
+ * 获取View绘制图片，需要在View绘制结束后调用
+ */
+inline fun View.getBitmap(): Bitmap {
+    val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+    val canvas = Canvas(bitmap)
+    layout(0, 0, width, height)
+    draw(canvas)
+    requestLayout()
+    return bitmap
 }
