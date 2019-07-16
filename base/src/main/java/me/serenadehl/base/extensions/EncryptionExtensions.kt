@@ -13,13 +13,13 @@ inline fun String.md5(): String {
         val digest = MessageDigest.getInstance("MD5")
         val messageDigest = digest.digest(this.toByteArray())
         // Create Hex String
-        val hexString = StringBuffer(messageDigest.size * 2)
-        for (b in messageDigest) {
-            val i = (b and 255.toByte()).toInt()
-            if (i < 16) {
+        val hexString = StringBuffer()
+        for (i in messageDigest.indices) {
+            val value = 255 and messageDigest[i].toInt()
+            if (value < 16) {
                 hexString.append("0")
             }
-            hexString.append(Integer.toHexString(i))
+            hexString.append(Integer.toHexString(value))
         }
         return hexString.toString()
     } catch (e: Exception) {
