@@ -15,7 +15,7 @@ inline fun String.md5(): String {
         // Create Hex String
         val hexString = StringBuffer()
         for (i in messageDigest.indices) {
-            val value = 255 and messageDigest[i].toInt()
+            val value = 0xFF and messageDigest[i].toInt()
             if (value < 16) {
                 hexString.append("0")
             }
