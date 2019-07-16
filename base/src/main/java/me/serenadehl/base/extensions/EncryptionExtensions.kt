@@ -3,7 +3,9 @@ package me.serenadehl.base.extensions
 import java.io.File
 import java.io.FileInputStream
 import java.math.BigInteger
+import java.nio.charset.StandardCharsets
 import java.security.MessageDigest
+import kotlin.experimental.and
 
 inline fun String.md5(): String {
     try {
@@ -11,9 +13,9 @@ inline fun String.md5(): String {
         val digest = MessageDigest.getInstance("MD5")
         val messageDigest = digest.digest(this.toByteArray())
         // Create Hex String
-        val hexString = StringBuffer()
-        for (b in messageDigest.indices) {
-            val i = b and 255
+        val hexString = StringBuffer(messageDigest.size * 2)
+        for (b in messageDigest) {
+            val i = (b and 255.toByte()).toInt()
             if (i < 16) {
                 hexString.append("0")
             }
