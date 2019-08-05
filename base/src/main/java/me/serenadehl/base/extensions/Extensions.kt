@@ -7,6 +7,7 @@ import android.support.annotation.StringRes
 import android.widget.Toast
 import android.support.v4.app.Fragment
 import me.serenadehl.base.utils.app.SystemUtils
+import me.serenadehl.base.utils.toast.ToastUtils
 
 /**
  *
@@ -18,13 +19,13 @@ import me.serenadehl.base.utils.app.SystemUtils
 /**
  * Toast
  */
-inline fun Context.toast(msg: String) = Toast.makeText(applicationContext, msg, Toast.LENGTH_SHORT).show()
+inline fun Context.toast(msg: String) = ToastUtils.toast(applicationContext, msg, Toast.LENGTH_SHORT)
 
-inline fun Fragment.toast(msg: String) = Toast.makeText(activity?.applicationContext, msg, Toast.LENGTH_SHORT).show()
+inline fun Fragment.toast(msg: String) = ToastUtils.toast(activity?.applicationContext, msg, Toast.LENGTH_SHORT)
 
-inline fun Context.toast(@StringRes msgId: Int) = Toast.makeText(applicationContext, msgId, Toast.LENGTH_SHORT).show()
+inline fun Context.toast(@StringRes msgId: Int) = ToastUtils.toast(applicationContext, msgId, Toast.LENGTH_SHORT)
 
-inline fun Fragment.toast(@StringRes msgId: Int) = Toast.makeText(activity?.applicationContext, msgId, Toast.LENGTH_SHORT).show()
+inline fun Fragment.toast(@StringRes msgId: Int) = ToastUtils.toast(activity?.applicationContext, msgId, Toast.LENGTH_SHORT)
 
 /**
  * 获取状态栏高度
