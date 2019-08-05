@@ -13,7 +13,7 @@ import android.text.Spanned
 /**
  * String转Html
  */
-inline fun String.toHtml(): Spanned {
+inline fun String.toHtml(): CharSequence {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
         Html.fromHtml(this, Html.FROM_HTML_MODE_LEGACY)
     } else {

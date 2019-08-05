@@ -16,13 +16,6 @@ inline fun View.visible() = apply { visibility = View.VISIBLE }
 
 inline fun View.invisible() = apply { visibility = View.INVISIBLE }
 
-inline fun View.setSize(width: Int = layoutParams.width, height: Int = layoutParams.height) {
-    layoutParams.apply {
-        this.width = width
-        this.height = height
-    }
-}
-
 /**
  * 测量View并获取View宽度
  */
