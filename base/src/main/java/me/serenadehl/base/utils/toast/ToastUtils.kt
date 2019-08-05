@@ -7,7 +7,6 @@ import android.os.Handler
 import android.os.Message
 import android.support.annotation.StringRes
 import android.widget.Toast
-import java.lang.reflect.Field
 
 /**
  * 作者：Serenade
@@ -47,7 +46,6 @@ object ToastUtils {
             mToast.setText(charSequence)
             mToast.duration = duration
         }
-        mToast.cancel()
         mToast.show()
     }
 
@@ -62,7 +60,6 @@ object ToastUtils {
             mToast.setText(resId)
             mToast.duration = duration
         }
-        mToast.cancel()
         mToast.show()
     }
 
