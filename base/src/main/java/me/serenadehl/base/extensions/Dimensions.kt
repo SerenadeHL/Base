@@ -2,7 +2,7 @@ package me.serenadehl.base.extensions
 
 import android.content.Context
 import android.support.annotation.DimenRes
-import android.support.v4.app.Fragment
+import androidx.core.app.Fragment
 import android.view.View
 
 //returns dp(dp) dimension value in pixels

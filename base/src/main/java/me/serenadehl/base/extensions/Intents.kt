@@ -7,7 +7,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Parcelable
 import java.io.Serializable
-import android.support.v4.app.Fragment
+import androidx.core.app.Fragment
 
 fun fillIntentArguments(intent: Intent, params: Array<out Pair<String, Any?>>) {
     params.forEach {

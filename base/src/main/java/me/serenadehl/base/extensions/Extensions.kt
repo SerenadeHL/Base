@@ -5,7 +5,7 @@ import android.content.Context
 import android.os.Build
 import android.support.annotation.StringRes
 import android.widget.Toast
-import android.support.v4.app.Fragment
+import androidx.core.app.Fragment
 import me.serenadehl.base.utils.app.SystemUtils
 import me.serenadehl.base.utils.toast.ToastUtils
 

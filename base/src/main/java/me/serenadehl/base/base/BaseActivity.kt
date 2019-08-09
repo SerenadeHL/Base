@@ -4,15 +4,14 @@ import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.support.annotation.DrawableRes
-import android.support.v4.widget.DrawerLayout
-import android.support.v7.app.AppCompatActivity
 import android.view.*
+import androidx.annotation.DrawableRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.drawerlayout.widget.DrawerLayout
 import me.serenadehl.base.extensions.getStatusBarHeight
 import me.serenadehl.base.extensions.gone
 import me.serenadehl.base.extensions.visible
 import me.serenadehl.base.utils.app.AppManager
-import me.serenadehl.base.utils.app.SystemUtils.getStatusBarHeight
 import me.serenadehl.base.utils.locale.LocaleUtils
 
 abstract class BaseActivity : AppCompatActivity() {

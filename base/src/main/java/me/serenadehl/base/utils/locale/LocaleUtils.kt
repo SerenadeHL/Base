@@ -1,5 +1,6 @@
 package me.serenadehl.base.utils.locale
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Configuration
 import android.os.Build

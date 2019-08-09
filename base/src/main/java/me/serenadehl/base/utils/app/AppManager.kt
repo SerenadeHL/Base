@@ -11,7 +11,7 @@ import java.util.*
  */
 
 object AppManager{
-    private val activities: Stack<Activity> by lazy { Stack<Activity>() }
+    private val activities: Stack<Activity> by lazy { Stack() }
 
     /**
      * 获取当前Activity
