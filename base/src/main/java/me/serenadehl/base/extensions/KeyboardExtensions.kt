@@ -1,9 +1,9 @@
 package me.serenadehl.base.extensions
 
 import android.content.Context
-import androidx.core.app.Fragment
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.fragment.app.Fragment
 
 /**
  * 作者：Serenade

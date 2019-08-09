@@ -1,9 +1,9 @@
 package me.serenadehl.base.extensions
 
 import android.content.Context
-import android.support.annotation.DimenRes
-import androidx.core.app.Fragment
 import android.view.View
+import androidx.annotation.DimenRes
+import androidx.fragment.app.Fragment
 
 //returns dp(dp) dimension value in pixels
 inline fun Context.dp(value: Int): Int = (value * resources.displayMetrics.density).toInt()

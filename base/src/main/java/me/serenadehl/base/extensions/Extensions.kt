@@ -3,9 +3,9 @@ package me.serenadehl.base.extensions
 import android.app.Activity
 import android.content.Context
 import android.os.Build
-import android.support.annotation.StringRes
 import android.widget.Toast
-import androidx.core.app.Fragment
+import androidx.annotation.StringRes
+import androidx.fragment.app.Fragment
 import me.serenadehl.base.utils.app.SystemUtils
 import me.serenadehl.base.utils.toast.ToastUtils
 
