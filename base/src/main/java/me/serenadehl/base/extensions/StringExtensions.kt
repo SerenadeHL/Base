@@ -26,8 +26,8 @@ inline fun String.toHtml(): CharSequence {
  */
 inline fun CharSequence.deleteEndBlankLine(): CharSequence {
     this.reversed().forEachIndexed { index, c ->
-        if (!Character.isWhitespace(c)){
-            subSequence(0, index + 1)
+        if (!Character.isWhitespace(c)) {
+            return subSequence(0, index + 1)
         }
     }
     return ""
