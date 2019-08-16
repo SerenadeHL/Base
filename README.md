@@ -7,7 +7,7 @@ allprojects {
 	}
 }
 dependencies {
-        implementation 'com.github.SerenadeHL:Base:1.3.2'
+        implementation 'com.github.SerenadeHL:Base:1.3.3'
 }
 ```
 
