@@ -25,10 +25,9 @@ inline fun String.toHtml(): CharSequence {
  * 删除Html <div>和<p>尾部的空行
  */
 inline fun CharSequence.deleteEndBlankLine(): CharSequence {
-    this.reversed().forEachIndexed { index, c ->
-        if (!Character.isWhitespace(c)){
-            return subSequence(0, index + 1)
-        }
+    var index = length - 1
+    while (index >= 0 && Character.isWhitespace(this[index])) {
+        index--
     }
-    return ""
+    return if (index < 0) "" else subSequence(0, index + 1)
 }
