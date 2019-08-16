@@ -20,3 +20,15 @@ inline fun String.toHtml(): CharSequence {
         Html.fromHtml(this)
     }
 }
+
+/**
+ * 删除Html <div>和<p>尾部的空行
+ */
+inline fun CharSequence.deleteEndBlankLine(): CharSequence {
+    this.reversed().forEachIndexed { index, c ->
+        if (!Character.isWhitespace(c)){
+            subSequence(0, index + 1)
+        }
+    }
+    return ""
+}

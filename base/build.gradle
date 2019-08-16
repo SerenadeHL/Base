@@ -27,7 +27,7 @@ dependencies {
     //Gson
     compileOnly 'com.google.code.gson:gson:2.8.5'
     //RxJava
-    compileOnly 'io.reactivex.rxjava2:rxjava:2.2.8'
+    compileOnly 'io.reactivex.rxjava2:rxjava:2.2.9'
     compileOnly 'io.reactivex.rxjava2:rxandroid:2.1.1'
     //Glide
     compileOnly 'com.github.bumptech.glide:glide:4.9.0'
