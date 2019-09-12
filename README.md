@@ -1,5 +1,5 @@
 # 添加依赖
-```java
+```gradle
 allprojects {
 	repositories {
 		...
