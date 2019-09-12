@@ -7,16 +7,6 @@ allprojects {
 	}
 }
 dependencies {
-        implementation 'com.github.SerenadeHL:Base:1.3.3'
-}
-```
-
-# 自定义Gson
-```java
-class DAppApplication : BaseApplication() {
-     override fun onCreate() {
-        super.onCreate()
-        GsonExtensionUtils.setGson(yourGson)
-     }
+        implementation 'com.github.SerenadeHL:Base:2.0.0'
 }
 ```
