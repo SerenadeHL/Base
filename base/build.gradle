@@ -6,10 +6,8 @@ apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 28
     defaultConfig {
-        minSdkVersion 19
+        minSdkVersion 14
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
     }
     buildTypes {
         release {
@@ -21,15 +19,15 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    compileOnly 'com.android.support:appcompat-v7:28.0.0'
     //Kotlin
-    compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    //Gson
-    compileOnly 'com.google.code.gson:gson:2.8.5'
-    //RxJava
-    compileOnly 'io.reactivex.rxjava2:rxjava:2.2.9'
-    compileOnly 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    //V7包
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    //布局
+    api 'com.github.SerenadeHL:LayoutInstaller:1.0.0'
+    //语言切换
+    api 'com.github.SerenadeHL:LocaleManager:1.0.0'
     //Glide
-    compileOnly 'com.github.bumptech.glide:glide:4.9.0'
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
     kapt 'com.github.bumptech.glide:compiler:4.9.0'
 }
