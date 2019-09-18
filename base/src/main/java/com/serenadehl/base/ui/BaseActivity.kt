@@ -5,11 +5,9 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.Window
-import android.view.WindowManager
-import com.serenadehl.base.extensions.getColorResource
 import com.serenadehl.base.utils.AppManager
+import com.serenadehl.layoutinstaller.LayoutInstaller
 import com.serenadehl.localemanager.LocaleManager
-import me.serenadehl.LayoutInstaller
 
 /**
  * 作者：Serenade
