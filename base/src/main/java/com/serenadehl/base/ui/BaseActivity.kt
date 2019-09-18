@@ -7,6 +7,7 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import com.serenadehl.base.extensions.getColorResource
+import com.serenadehl.base.utils.AppManager
 import com.serenadehl.localemanager.LocaleManager
 import me.serenadehl.LayoutInstaller
 
@@ -27,7 +28,13 @@ abstract class BaseActivity : AppCompatActivity() {
         //取消ActionBar
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         mContentView = LayoutInstaller.bind(this)
+        AppManager.addActivity(this)
         onActivityCreated(savedInstanceState)
+    }
+
+    override fun onDestroy() {
+        AppManager.removeActivity(this)
+        super.onDestroy()
     }
 
     abstract fun onActivityCreated(savedInstanceState: Bundle?)
