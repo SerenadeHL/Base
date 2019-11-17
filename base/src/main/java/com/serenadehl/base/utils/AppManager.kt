@@ -43,7 +43,10 @@ object AppManager{
     fun finishActivity(cls: Class<out Activity>) {
         activities
                 .filter { cls.name == it.javaClass.name }
-                .forEach { it.finish() }
+                .let {
+                    it.forEach {activity-> activity.finish() }
+                    activities.removeAll(it)
+                }
     }
 
     /**
