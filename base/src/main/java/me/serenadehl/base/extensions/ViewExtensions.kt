@@ -43,3 +43,15 @@ inline fun View.getBitmap(): Bitmap {
     requestLayout()
     return bitmap
 }
+
+/**
+ * View是否在屏幕区域内
+ */
+inline fun View.inScreen():Boolean{
+    val screenWidth = ScreenUtils.getScreenWidth()
+    val screenHeight = ScreenUtils.getScreenHeight()
+    val rect = Rect(0, 0, screenWidth, screenHeight)
+    val location = IntArray(2)
+    getLocationInWindow(location)
+    return getLocalVisibleRect(rect)
+}
